@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!--引入css核心文件  -->
+    <link rel="stylesheet" href="/css/bootstrap.css">
+    <!-- 引入jQuery  -->
+    <script src="/js/jquery-1.11.3.min.js"></script>
+    <!-- 引入js核心文件 -->
+    <script src="/js/bootstrap.js"></script>
+    <script src="/js/markdown.min.js"></script>
+    <style>
+        body {padding-top: 50px; background: #eee;}
+        .main {background: #fff;}
+        .main .media-left img {width: 370px; height: 200px;}
+        .main .media{margin: 20px 0; border-bottom: 1px solid #ddd; padding-bottom: 20px;}
+        .hot li {line-height: 28px;}
+        .footer {background: #101010; color: #666; padding: 15px 0;}
+        @media screen and (max-width : 768px) {
+            .media-left,.media-body {display: block;}
+        }
+        .md img {max-width: 100%;}
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-default navbar-fixed-top navbar-inverse">
+        <div class="container">
+            <div class="navbar-header">
+                <button class="navbar-toggle collapsed" data-target="#menu" data-toggle="collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a href="" class="navbar-brand">牛的博客</a>
+            </div>
+            <div id="menu" class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li><a href="/">首页</a></li>
+                    <% for (var i = 0; i < cats.length; i++) { %>
+                    <li><a href="/list?cat=<%= cats[i].title %>"><%= cats[i].title %></a></li>
+                    <% } %>
+                </ul>
+                <form action="" class="navbar-form navbar-right hidden-xs hidden-sm">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="请输入关键字">
+                        <div class="input-group-btn">
+                            <button class="btn btn-primary">搜索</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </nav>
+    <div>
+        <img src="/images/baner.jpg" class="img-responsive">
+    </div>
+    <br>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9 main">
+                <br>
+                <ol class="breadcrumb">
+                    <li><a href="/">首页</a></li>
+                    <li><a href="/list?cat=<%= data.category %>"><%= data.category %></a></li>
+                </ol>
+                <div class="content">
+                    <h1><%= data.subject %></h1>
+                    <p>Killer 发表于(<%= data.time %>) 本文标签：浏览量：<%= data.count %>次
+                        <a href=""><i class="glyphicon glyphicon-thumbs-up"></i>喜欢</a>
+                        <a href=""><i class="glyphicon glyphicon-heart"></i>收藏</a>
+                    </p>
+                    <div class="md"><%= data.content %></div>
+                    <script>
+                    let html = markdown.toHTML($(".md").text());
+                    $(".md").html(html);
+                    </script>
+                    <!--
+                    <div class="md">这是一个*markdown*语法的内容</div>
+                    <script>
+                        let html = markdown.toHTML($(".md").text());
+                        $(".md").html(html);
+                    </script>
+                    -->
+                </div>
+                <div class="relative">
+                    <h2>相关文章</h2>
+                    <div class="row">
+                        <div class="col-sm-6 col-xs-12"><a href=""> <i class="glyphicon glyphicon-link
+glyphicon"></i> 响应式Web设计</a></div>
+                        <div class="col-sm-6 col-xs-12"><a href=""> <i class="glyphicon glyphicon-link
+glyphicon"></i> 响应式Web设计</a></div>
+                        <div class="col-sm-6 col-xs-12"><a href=""> <i class="glyphicon glyphicon-link
+glyphicon"></i> 响应式Web设计</a></div>
+                        <div class="col-sm-6 col-xs-12"><a href=""> <i class="glyphicon glyphicon-link
+glyphicon"></i> 响应式Web设计</a></div>
+                        <div class="col-sm-6 col-xs-12"><a href=""> <i class="glyphicon glyphicon-link
+glyphicon"></i> 响应式Web设计</a></div>
+                        <div class="col-sm-6 col-xs-12"><a href=""> <i class="glyphicon glyphicon-link
+glyphicon"></i> 响应式Web设计</a></div>
+                        <div class="col-sm-6 col-xs-12"><a href=""> <i class="glyphicon glyphicon-link
+glyphicon"></i> 响应式Web设计</a></div>
+                        <div class="col-sm-6 col-xs-12"><a href=""> <i class="glyphicon glyphicon-link
+glyphicon"></i> 响应式Web设计</a></div>
+                    </div>
+                </div>
+                <br>
+            </div>
+            <div class="col-md-3 hidden-xs hidden-sm">
+                <div class="panel panel-default hot">
+                    <div class="panel-heading">热门文章</div>
+                    <div class="panel-body">
+                        <ul class="list-unstyled">
+                            <li><span class="label label-danger">1</span> <a href="">js面向对象</a></li>
+                            <li><span class="label label-danger">2</span> <a href="">js面向对象</a></li>
+                            <li><span class="label label-danger">3</span> <a href="">js面向对象</a></li>
+                            <li><span class="label label-default">4</span> <a href="">js面向对象</a></li>
+                            <li><span class="label label-default">5</span> <a href="">js面向对象</a></li>
+                            <li><span class="label label-default">6</span> <a href="">js面向对象</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="footer text-center">
+        <p>版权所有，保留一切权利！ 转载内容版权归作者及来源网站所有，原创内容转载请注明来源。</p>
+        <p>Copyright © 2013-2020 andy, All Rights Reserved.</p>
+    </div>
+</body>
+</html>
